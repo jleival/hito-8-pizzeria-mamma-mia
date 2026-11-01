@@ -14,7 +14,7 @@ Aplicación web full-stack para **Pizzería Mamma Mía**, desarrollada como part
 
 - 🚀 **Deploy en Producción (Vercel):** [https://hito-8-pizzeria-mamma-mia-bice.vercel.app/](https://hito-8-pizzeria-mamma-mia-bice.vercel.app/)
 - 💻 **Repositorio en GitHub:** [https://github.com/jleival/hito-8-pizzeria-mamma-mia](https://github.com/jleival/hito-8-pizzeria-mamma-mia)
-- ⚙️ **Backend API (Render):** `https://pizzeria-backend-60le.onrender.com`
+- ⚙️ **Backend API (Render):** [https://pizzeria-backend-60le.onrender.com/api/pizzas](https://pizzeria-backend-60le.onrender.com/api/pizzas)
 
 ---
 
