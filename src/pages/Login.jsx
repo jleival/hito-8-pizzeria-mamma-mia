@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react"; // 👈 1. Importamos useContext
+import { UserContext } from "../context/UserContext"; // 👈 2. Importamos UserContext
 
 const Login = () => {
-    // 1. Definimos los estados para email y password
+    // Definimos los estados para email y password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // 2. Función que maneja el evento submit del login
-    const handleSubmit = (e) => {
+    // 👈 3. Extraemos la función login desde nuestro UserContext
+    const { login } = useContext(UserContext);
+
+    // 👈 4. Convertimos handleSubmit en async para esperar la respuesta del backend
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validación 1: que ningún campo esté vacío
@@ -21,12 +25,14 @@ const Login = () => {
             return;
         }
 
-        //Si todo es correcto
-        alert('¡Login exitoso!');
+        // 👈 5. Llamamos al método login del contexto (que hace el fetch a Render)
+        const success = await login(email, password);
 
-        // Esto es opcional: limpiar los inputs
-        setEmail('');
-        setPassword('');
+        if (success) {
+            alert('¡Login exitoso!');
+            setEmail('');
+            setPassword('');
+        }
     };
 
     return (
