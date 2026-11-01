@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react'; // 👈 1. Importamos useContext
+import { UserContext } from '../context/UserContext'; // 👈 2. Importamos UserContext
 
 const Register = () => {
-    // 1. Definimos los estados para campo del formulario
+    // 1. Definimos los estados para cada campo del formulario
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // 2. Función que maneja el evento submit del formulario
-    const handelSubmit = (e) => {
+    // 👈 3. Extraemos el método register desde nuestro UserContext
+    const { register } = useContext(UserContext);
+
+    // 👈 4. Convertimos la función a async para esperar la respuesta del backend
+    const handelSubmit = async (e) => {
         e.preventDefault();
 
         // Validación 1: que ningún campo esté vacío
@@ -28,13 +32,15 @@ const Register = () => {
             return;
         }
 
-        // Si es todo correcto
-        alert('¡Registro exitoso!')
+        // 👈 5. Llamamos al método register del UserContext enviando email y password
+        const success = await register(email, password);
 
-        // Esto es opcional: limpiar los imputs
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
+        if (success) {
+            alert('¡Registro exitoso!');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+        }
     };
 
     return (
